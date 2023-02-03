@@ -1,0 +1,33 @@
+nodes:
+- input.visual:
+    mirror_image: True
+    source: 0
+    threading: True
+    buffering: False
+
+- model.yolo:
+    model_type: "v4tiny"
+    iou_threshold: 0.1
+    score_threshold: 0.1
+    detect_ids: ["person"] # [0]
+    num_classes: 1
+- model.movenet:
+    model_type: "singlepose_thunder"
+    #resolution: {height: 256, width: 256} # WARNING:  Config for node model.movenet does not have the key: height and width -> source code nested dict
+    bbox_score_threshold: 0.05
+    keypoint_score_threshold: 0.05
+- dabble.fps
+- custom_nodes.dabble.exercise_counter:
+    keypoint_threshold: 0.3
+    exercise_name: "bicep"
+    bicep_pose_params: {
+        starting_elbow_angle: 155,
+        ending_elbow_angle: 40,
+    }
+- draw.poses
+
+- draw.legend:
+   show: ["fps"]
+
+
+- output.screen

@@ -1,0 +1,12 @@
+# Dabble node has both input and output
+input: ["img", "bboxes", "bbox_scores", "keypoints", "keypoint_scores", "filename"]
+output: ["frame_count", "num_push_ups", "expected_pose", "elbow_angle", "shoulder_keypoint", "elbow_keypoint", "wrist_keypoint", "filename"]
+
+
+# Optional configs
+keypoint_threshold: 0.3
+exercise_name: "bicep"
+bicep_pose_params: {
+    starting_elbow_angle: 155,
+    ending_elbow_angle: 40,
+}   
